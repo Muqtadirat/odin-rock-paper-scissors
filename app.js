@@ -1,10 +1,9 @@
 "use strict";
 
-var playerChoice;
-// let playerChoice = prompt("Choose wisely", "").toUpperCase();
 let playerScore = 0;
 let computerScore = 0;
 let roundsLeft = 5;
+// let playerChoice = prompt("Choose wisely", "").toUpperCase();
 
 // if (playerChoice === "" || playerChoice === null) {
 //   alert("Invalid input");
@@ -30,12 +29,6 @@ function playRound(playerSelection, computerSelection) {
   const playerScoreBox = document.querySelector(".player-score");
   const computerScoreBox = document.querySelector(".computer-score");
 
-  playerChoice = prompt("Choose wisely", "").toUpperCase();
-
-  if (playerChoice === "" || playerChoice === null) {
-    alert("Invalid input");
-  } else playerChoice;
-
   if (
     (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
     (playerSelection === "PAPER" && computerSelection === "ROCK") ||
@@ -43,6 +36,7 @@ function playRound(playerSelection, computerSelection) {
   ) {
     playerScore++;
     playerScoreBox.textContent = `${playerScore}`;
+    alert("You win");
   } else if (
     (playerSelection === "ROCK" && computerSelection === "PAPER") ||
     (playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
@@ -50,6 +44,7 @@ function playRound(playerSelection, computerSelection) {
   ) {
     computerScore++;
     computerScoreBox.textContent = `${computerScore}`;
+    alert("You lose");
   } else if (playerSelection === computerSelection) {
     alert("It's tie, replay");
   } else alert("Not a wise choice");
@@ -59,10 +54,16 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
   const roundsDisplay = document.querySelector(".rounds-left");
-  const playerSelection = playerChoice;
   const computerSelection = getComputerChoice();
 
   for (let round = 0; round < 5; round++) {
+    let playerSelection = prompt("Choose wisely", "").toUpperCase();
+
+    if (playerSelection === "" || playerSelection === null) {
+      alert("Invalid input");
+      round--;
+    }
+
     playRound(playerSelection, computerSelection);
 
     roundsLeft--;
@@ -70,7 +71,4 @@ function game() {
   }
 }
 
-// console.log(getComputerChoice());
-// console.log(playerChoice);
-
-game();
+document.querySelector(".play").addEventListener("click", game);
