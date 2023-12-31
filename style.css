@@ -1,0 +1,10 @@
+.score-box{
+    display: flex;
+    border: 2px solid black;
+    height: 100px;
+    width: 250px;
+    gap: 20px;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+}
